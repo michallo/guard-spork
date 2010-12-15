@@ -46,8 +46,9 @@ module Guard
         options[:wait].times do
           sleep 1
           begin
-            TCPSocket.new('localhost', options[:rspec_port]).close if rspec?
-            TCPSocket.new('localhost', options[:cucumber_port]).close if cucumber?
+            # this cause socket tiemout error on mac osx snow leopard
+            # TCPSocket.new('localhost', options[:rspec_port]).close if rspec?
+            # TCPSocket.new('localhost', options[:cucumber_port]).close if cucumber?
           rescue Errno::ECONNREFUSED
             print '.'
             next
